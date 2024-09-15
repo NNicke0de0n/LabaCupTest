@@ -23,9 +23,7 @@ namespace LabaCupTest
         private const int MiniCircleRadiusMin = 3;
         private const int MiniCircleRadiusMax = 7;
         private const int BigRadius = 50;
-        private int bigCircleRadius = 150;
-        private int cubeStartPosX = 150; //150
-        private int cubeStartPosY = 195; //195
+        private int bigCircleRadius = 150; //150
         private int cubeSize = 40;
         private Point cubeStartPoint = new Point();
 
@@ -46,12 +44,12 @@ namespace LabaCupTest
 
             FillBackground(g);
             DrawCircles(g);
-            DrawRotatedRectangle(g);
+            
             DrawLines(g, Color.Black, Color.White);
             DrawMiniCircles(g);
             DrawAndFillPath(g, Color.FromArgb(86, 50, 24));
-            DrawRectangles(g, GetPointCircle(CircleCenterX, CircleCenterY, bigCircleRadius), cubeSize);
-            //DrawRectangles(g, cubeStartPosX, cubeStartPosY, cubeSize);
+            cubeStartPoint = GetPointCircle(CircleCenterX, CircleCenterY, bigCircleRadius);
+            DrawRectangles(g, cubeStartPoint, cubeSize);
         }
 
         private void FillBackground(Graphics g)
@@ -62,8 +60,9 @@ namespace LabaCupTest
         private void DrawCircles(Graphics g)
         {
             DrawCircle(g, CircleCenterX, CircleCenterY, bigCircleRadius, Color.FromArgb(252, 206, 170));
-            DrawCircle(g, CircleCenterX, CircleCenterY, 110, Color.FromArgb(254, 245, 204));
-            DrawCircle(g, CircleCenterX, CircleCenterY, 90, Color.FromArgb(162, 106, 76));
+            DrawCircle(g, CircleCenterX, CircleCenterY, bigCircleRadius - bigCircleRadius/4, Color.FromArgb(254, 245, 204)); //110
+            DrawRotatedRectangle(g);
+            DrawCircle(g, CircleCenterX, CircleCenterY, bigCircleRadius - bigCircleRadius/3, Color.FromArgb(162, 106, 76)); //90
         }
 
         private void DrawCircle(Graphics g, int posX, int posY, int radius, Color color)
@@ -214,7 +213,8 @@ namespace LabaCupTest
             {
                 toolTip.Show("This is the circle", this, e.X, e.Y, 1000);
             }
-            else if (IsPointInCircle(mouseX, mouseY, cubeStartPosX, cubeStartPosY + cubeStartPosY / 3, cubeSize))
+
+            else if (IsPointInCircle(mouseX, mouseY, cubeStartPoint.X, cubeStartPoint.Y + cubeStartPoint.Y / 4, cubeSize))
             {
                 toolTip.Show("lox", this, e.X, e.Y, 1000);
             }
