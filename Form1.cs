@@ -23,6 +23,12 @@ namespace LabaCupTest
         private const int MiniCircleRadiusMin = 3;
         private const int MiniCircleRadiusMax = 7;
         private const int BigRadius = 50;
+        private int bigCircleRadius = 150;
+        private int cubeStartPosX = 150; //150
+        private int cubeStartPosY = 195; //195
+        private int cubeSize = 40;
+        private Point cubeStartPoint = new Point();
+
         private Random random = new Random();
         private ToolTip toolTip = new ToolTip();
 
@@ -44,7 +50,8 @@ namespace LabaCupTest
             DrawLines(g, Color.Black, Color.White);
             DrawMiniCircles(g);
             DrawAndFillPath(g, Color.FromArgb(86, 50, 24));
-            DrawRectangles(g);
+            DrawRectangles(g, GetPointCircle(CircleCenterX, CircleCenterY, bigCircleRadius), cubeSize);
+            //DrawRectangles(g, cubeStartPosX, cubeStartPosY, cubeSize);
         }
 
         private void FillBackground(Graphics g)
@@ -54,7 +61,7 @@ namespace LabaCupTest
 
         private void DrawCircles(Graphics g)
         {
-            DrawCircle(g, CircleCenterX, CircleCenterY, 150, Color.FromArgb(252, 206, 170));
+            DrawCircle(g, CircleCenterX, CircleCenterY, bigCircleRadius, Color.FromArgb(252, 206, 170));
             DrawCircle(g, CircleCenterX, CircleCenterY, 110, Color.FromArgb(254, 245, 204));
             DrawCircle(g, CircleCenterX, CircleCenterY, 90, Color.FromArgb(162, 106, 76));
         }
@@ -62,6 +69,13 @@ namespace LabaCupTest
         private void DrawCircle(Graphics g, int posX, int posY, int radius, Color color)
         {
             g.FillEllipse(new SolidBrush(color), posX - radius, posY - radius, radius * 2, radius * 2);
+        }
+
+        private Point GetPointCircle(int x, int y, int radius)
+        {
+            int posX = x - radius;
+            
+            return new Point(posX, y);
         }
 
         private void DrawRotatedRectangle(Graphics g)
@@ -165,59 +179,33 @@ namespace LabaCupTest
 
             g.FillPath(brush, path);
         }
-        private void DrawCube(Graphics g, int x, int y, int size)
+
+        private void DrawRectangles(Graphics g, Point point, int cubeSize)
         {
-            // Определение координат вершин куба
-            Point[] points = new Point[]
-            {
-        new Point(x, y), // Верхний левый передний угол
-        new Point(x + size, y), // Верхний правый передний угол
-        new Point(x + size, y + size), // Нижний правый передний угол
-        new Point(x, y + size), // Нижний левый передний угол
-        new Point(x + size / 4, y - size / 4), // Верхний левый задний угол (с учетом перспективы)
-        new Point(x + size + size / 4, y - size / 4), // Верхний правый задний угол (с учетом перспективы)
-        new Point(x + size + size / 4, y + size - size / 4), // Нижний правый задний угол (с учетом перспективы)
-        new Point(x + size / 4, y + size - size / 4)  // Нижний левый задний угол (с учетом перспективы)
-            };
-
-            // Нарисовать линии, соединяющие вершины
-            Pen pen = new Pen(Color.White, 2);
-
-            // Рисуем переднюю грань
-            g.DrawLine(pen, points[0], points[1]); // Верхняя линия
-            g.DrawLine(pen, points[1], points[2]); // Правая линия
-            g.DrawLine(pen, points[2], points[3]); // Нижняя линия
-            g.DrawLine(pen, points[3], points[0]); // Левая линия
-
-            // Рисуем заднюю грань
-            g.DrawLine(pen, points[4], points[5]); // Верхняя линия
-            g.DrawLine(pen, points[5], points[6]); // Правая линия
-            g.DrawLine(pen, points[6], points[7]); // Нижняя линия
-            g.DrawLine(pen, points[7], points[4]); // Левая линия
-
-            // Соединяем переднюю и заднюю грани
-            g.DrawLine(pen, points[0], points[4]); // Верхний левый угол
-            g.DrawLine(pen, points[1], points[5]); // Верхний правый угол
-            g.DrawLine(pen, points[2], points[6]); // Нижний правый угол
-            g.DrawLine(pen, points[3], points[7]); // Нижний левый угол
-        }
-        private void DrawRectangles(Graphics g)
-        {
-            int x = 150;
-            int y = 195;
-            int size = 40;
             Color color1 = Color.White;
             Color color2 = Color.Brown;
 
-            DrawRectange(g, x, y, size, size, color1, color2);
-            DrawRectange(g, x, y + size + size / 10, size, size, color1, color2);
-            DrawRectange(g, x - size / 8, y + size / 2, size, size, color1, color2);
+            DrawRectangle(g, point.X, point.Y, cubeSize, cubeSize, color1, color2);
+            DrawRectangle(g, point.X, point.Y+ cubeSize + cubeSize / 10, cubeSize, cubeSize, color1, color2);
+            DrawRectangle(g, point.X - cubeSize / 8, point.Y + cubeSize / 2, cubeSize, cubeSize, color1, color2);
         }
-        private void DrawRectange(Graphics g, int x, int y, int width, int height, Color color1, Color color2)
+
+        private void DrawRectangles(Graphics g, int posX, int posY, int cubeSize)
+        {
+            Color color1 = Color.White;
+            Color color2 = Color.Brown;
+
+            DrawRectangle(g, posX, posY, cubeSize, cubeSize, color1, color2);
+            DrawRectangle(g, posX, posY + cubeSize + cubeSize / 10, cubeSize, cubeSize, color1, color2);
+            DrawRectangle(g, posX - cubeSize / 8, posY + cubeSize / 2, cubeSize, cubeSize, color1, color2);
+        }
+
+        private void DrawRectangle(Graphics g, int x, int y, int width, int height, Color color1, Color color2)
         {
             g.FillRectangle(new SolidBrush(color1), x, y, width, height);
             g.DrawRectangle(new Pen(color2, 1), x, y, width, height);
         }
+
         private void OnMouseMove(object sender, MouseEventArgs e)
         {
             int mouseX = e.X;
@@ -226,7 +214,7 @@ namespace LabaCupTest
             {
                 toolTip.Show("This is the circle", this, e.X, e.Y, 1000);
             }
-            else if (IsPointInCircle(mouseX, mouseY, 150, 195, 100))
+            else if (IsPointInCircle(mouseX, mouseY, cubeStartPosX, cubeStartPosY + cubeStartPosY / 3, cubeSize))
             {
                 toolTip.Show("lox", this, e.X, e.Y, 1000);
             }
@@ -238,7 +226,6 @@ namespace LabaCupTest
                 <= Math.Pow(bigRadius, 2);
         }
     }
-
 }
 
 
