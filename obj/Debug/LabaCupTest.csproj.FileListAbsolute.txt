@@ -1,0 +1,9 @@
+C:\Users\Вероника\source\repos\LabaCupTest\LabaCupTest\bin\Debug\LabaCupTest.exe.config
+C:\Users\Вероника\source\repos\LabaCupTest\LabaCupTest\bin\Debug\LabaCupTest.exe
+C:\Users\Вероника\source\repos\LabaCupTest\LabaCupTest\bin\Debug\LabaCupTest.pdb
+C:\Users\Вероника\source\repos\LabaCupTest\LabaCupTest\obj\Debug\LabaCupTest.csproj.AssemblyReference.cache
+C:\Users\Вероника\source\repos\LabaCupTest\LabaCupTest\obj\Debug\LabaCupTest.Properties.Resources.resources
+C:\Users\Вероника\source\repos\LabaCupTest\LabaCupTest\obj\Debug\LabaCupTest.csproj.GenerateResource.cache
+C:\Users\Вероника\source\repos\LabaCupTest\LabaCupTest\obj\Debug\LabaCupTest.csproj.CoreCompileInputs.cache
+C:\Users\Вероника\source\repos\LabaCupTest\LabaCupTest\obj\Debug\LabaCupTest.exe
+C:\Users\Вероника\source\repos\LabaCupTest\LabaCupTest\obj\Debug\LabaCupTest.pdb
