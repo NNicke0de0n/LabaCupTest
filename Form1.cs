@@ -42,14 +42,14 @@ namespace LabaCupTest
             Graphics g = e.Graphics;
             g.SmoothingMode = SmoothingMode.AntiAlias;
 
+            cubeStartPoint = GetPointCircle(CircleCenterX, CircleCenterY, bigCircleRadius);
             FillBackground(g);
             DrawCircles(g);
             
             DrawLines(g, Color.Black, Color.White);
             DrawMiniCircles(g);
             DrawAndFillPath(g, Color.FromArgb(86, 50, 24));
-            cubeStartPoint = GetPointCircle(CircleCenterX, CircleCenterY, bigCircleRadius);
-            DrawRectangles(g, cubeStartPoint, cubeSize);
+            //DrawRectangles(g, cubeStartPoint, cubeSize);
         }
 
         private void FillBackground(Graphics g)
@@ -60,6 +60,7 @@ namespace LabaCupTest
         private void DrawCircles(Graphics g)
         {
             DrawCircle(g, CircleCenterX, CircleCenterY, bigCircleRadius, Color.FromArgb(252, 206, 170));
+            DrawRectangles(g, cubeStartPoint, cubeSize);
             DrawCircle(g, CircleCenterX, CircleCenterY, bigCircleRadius - bigCircleRadius/4, Color.FromArgb(254, 245, 204)); //110
             DrawRotatedRectangle(g);
             DrawCircle(g, CircleCenterX, CircleCenterY, bigCircleRadius - bigCircleRadius/3, Color.FromArgb(162, 106, 76)); //90
@@ -211,12 +212,12 @@ namespace LabaCupTest
             int mouseY = e.Y;
             if (IsPointInCircle(mouseX, mouseY, CircleCenterX, CircleCenterY, BigRadius))
             {
-                toolTip.Show("This is the circle", this, e.X, e.Y, 1000);
+                toolTip.Show("Сoffee mug", this, e.X, e.Y, 1000);
             }
 
             else if (IsPointInCircle(mouseX, mouseY, cubeStartPoint.X, cubeStartPoint.Y + cubeStartPoint.Y / 4, cubeSize))
             {
-                toolTip.Show("lox", this, e.X, e.Y, 1000);
+                toolTip.Show("Shugar", this, e.X, e.Y, 1000);
             }
         }
 
