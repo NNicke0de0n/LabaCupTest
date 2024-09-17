@@ -44,26 +44,21 @@ namespace LabaCupTest
 
             cubeStartPoint = GetPointCircle(CircleCenterX, CircleCenterY, bigCircleRadius);
             FillBackground(g);
-            DrawCircles(g);
-            
+
+            DrawCircle(g, CircleCenterX, CircleCenterY, bigCircleRadius, Color.FromArgb(252, 206, 170));
+            DrawRectangles(g, cubeStartPoint, cubeSize);
+            DrawCircle(g, CircleCenterX, CircleCenterY, bigCircleRadius - bigCircleRadius / 4, Color.FromArgb(254, 245, 204)); //110
+            DrawRotatedRectangle(g);
+            DrawCircle(g, CircleCenterX, CircleCenterY, bigCircleRadius - bigCircleRadius / 3, Color.FromArgb(162, 106, 76)); //90
+
             DrawLines(g, Color.Black, Color.White);
             DrawMiniCircles(g);
             DrawAndFillPath(g, Color.FromArgb(86, 50, 24));
-            //DrawRectangles(g, cubeStartPoint, cubeSize);
         }
 
         private void FillBackground(Graphics g)
         {
             g.FillRectangle(new SolidBrush(Color.FromArgb(238, 28, 37)), 0, 0, Width, Height);
-        }
-
-        private void DrawCircles(Graphics g)
-        {
-            DrawCircle(g, CircleCenterX, CircleCenterY, bigCircleRadius, Color.FromArgb(252, 206, 170));
-            DrawRectangles(g, cubeStartPoint, cubeSize);
-            DrawCircle(g, CircleCenterX, CircleCenterY, bigCircleRadius - bigCircleRadius/4, Color.FromArgb(254, 245, 204)); //110
-            DrawRotatedRectangle(g);
-            DrawCircle(g, CircleCenterX, CircleCenterY, bigCircleRadius - bigCircleRadius/3, Color.FromArgb(162, 106, 76)); //90
         }
 
         private void DrawCircle(Graphics g, int posX, int posY, int radius, Color color)
